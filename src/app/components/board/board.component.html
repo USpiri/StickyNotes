@@ -1,0 +1,10 @@
+<div class="board_header d-flex justify-content-center align-items-center pt-3">
+    <h1 class="board_title">My Board</h1>
+</div>
+<div class="app mx-sm-5">
+    <app-note class="d-inline-block" *ngFor="let note of notes"
+        [text]="note.text" (onNewText)="updateNote($event,note)" 
+        (onDelete)="deleteNote(note)"
+    ></app-note>
+    <app-add-button class="d-inline-block" (btnClick)="addNote()"></app-add-button>
+</div>

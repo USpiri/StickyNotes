@@ -1,0 +1,21 @@
+.add_note{
+    height: 150px;
+    width: 150px;
+    border: none;
+    outline: none;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.15);
+    transition: background .4s,
+                font-size .2s ease-in-out,
+                color .2s;
+
+}
+
+.add_note:hover{
+    background: rgba(0, 0, 0, 0.3);
+    font-size: 75px;
+    color: rgba(255, 255, 255, 0.5);
+}

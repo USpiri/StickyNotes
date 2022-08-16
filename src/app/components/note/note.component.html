@@ -1,0 +1,11 @@
+
+<div class="d-flex flex-direction-row position-relative">
+    <textarea class="note w-100" placeholder="Empty Sticky Note" 
+    [(ngModel)]="noteText" (ngModelChange)="onUpdate()"
+    >
+        {{noteText}}
+    </textarea>
+    <div class="position-absolute top-0 end-0 me-2">
+        <i class="fa-solid fa-square-xmark delete" (click)="onDeleteNote()"></i>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.board_title{
+    font-weight: 600;
+}
+.app{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    padding: 20px;
+    gap: 20px;
+}
