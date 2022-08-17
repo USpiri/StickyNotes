@@ -8,13 +8,37 @@
     resize: none;
     font-size: 14px;
 }
-.delete{
+.icon{
     color: rgba(0, 0, 0, 0.15);
-    margin-top: 8px;
     transition: all .2s;
     cursor: pointer;
     font-size: 18px;
+    transition: all .2s;
 }
 .delete:hover{
     color: rgba(239, 35, 60, 0.8);
+}
+.menu:hover{
+    color: rgba(14, 173, 105, 0.8);
+}
+.colors{
+    list-style: none;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+.color_item{
+    border: 1px solid rgb(199, 199, 199);
+    height: 15px;
+    width: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.color_item:hover{
+    transform: scale(1.1);
+}
+.selected{
+    border: 2px solid rgba(14, 173, 105, 0.8);
+    transform: scale(1.1);
+    cursor: default;
 }

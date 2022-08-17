@@ -21,7 +21,8 @@ export class NoteService {
     const notes = this.getNotes();
     const note:Note = {
       id: Math.floor(Math.random() * 100000),
-      text: ""
+      text: "",
+      color: "#FFFFFC"
     }
     if (this.exist(note,notes)) {
       while (this.exist(note,notes)) {
@@ -33,11 +34,11 @@ export class NoteService {
     return note;
   }
 
-  updateNote(text:string,note:Note):Note[]{
+  updateNote(note:Note):Note[]{
     const notes = this.getNotes();
-    const targetNote = notes.filter((notes) => notes.id == note.id)[0];
+    let targetNote = notes.filter((notes) => notes.id == note.id)[0];
     const index = notes.indexOf(targetNote);
-    targetNote.text = text;
+    targetNote = note;
     notes[index] = targetNote;
     this.saveNotes(notes);
     return notes;

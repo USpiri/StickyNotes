@@ -3,7 +3,7 @@
 </div>
 <div class="app mx-sm-5">
     <app-note class="d-inline-block" *ngFor="let note of notes"
-        [text]="note.text" (onNewText)="updateNote($event,note)" 
+        [note]="note" (onNewText)="updateNote($event)" 
         (onDelete)="deleteNote(note)"
     ></app-note>
     <app-add-button class="d-inline-block" (btnClick)="addNote()"></app-add-button>

@@ -1,11 +1,27 @@
 
 <div class="d-flex flex-direction-row position-relative">
     <textarea class="note w-100" placeholder="Empty Sticky Note" 
-    [(ngModel)]="noteText" (ngModelChange)="onUpdate()"
+        [(ngModel)]="note.text" (ngModelChange)="onUpdate()"
+        [ngStyle]="{'background-color': note.color}"
     >
         {{noteText}}
     </textarea>
-    <div class="position-absolute top-0 end-0 me-2">
-        <i class="fa-solid fa-square-xmark delete" (click)="onDeleteNote()"></i>
+    <div class="d-flex flex-column position-absolute top-0 end-0 me-2 mt-2">
+        <div class="m-0">
+            <i class="fa-solid fa-square-xmark icon delete" (click)="onDeleteNote()"></i>
+        </div>
+        <div class="m-0">
+            <i class="fa-solid fa-square-caret-down icon menu" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
+            <div class="dropdown">
+                <div class="dropdown-menu p-3">
+                    <label class="form-label">Colors</label>
+                    <ul class="d-grid colors m-0 p-0">
+                        <li class="color_item" (click)="selectItem(color.id)" *ngFor="let color of colors"
+                            [ngStyle]="{'background-color': color.color}" [ngClass]="{'selected': color.selected}"
+                        ></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

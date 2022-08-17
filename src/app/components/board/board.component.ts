@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Note } from 'src/app/model/Note';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -17,15 +17,14 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.notes = this.noteService.getNotes();
-    console.log(this.notes);
   }
 
   addNote(){
     this.notes.push(this.noteService.addNote());
   }
 
-  updateNote( event:string, note:Note ){
-    this.noteService.updateNote(event,note);
+  updateNote( newNote:Note ){
+    this.noteService.updateNote(newNote);
   }
 
   deleteNote(note:Note){
