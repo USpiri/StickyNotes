@@ -22,7 +22,7 @@ export class NoteService {
     const note:Note = {
       id: Math.floor(Math.random() * 100000),
       text: "",
-      color: "#FFFFFC"
+      color: "#fffffc"
     }
     if (this.exist(note,notes)) {
       while (this.exist(note,notes)) {
