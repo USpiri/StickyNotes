@@ -1,7 +1,7 @@
 <div class="board_header d-flex justify-content-center align-items-center pt-3">
     <h1 class="board_title">My Board</h1>
 </div>
-<div class="app mx-sm-5">
+<div class="app mx-sm-5 align-items-center align-items-sm-start justify-content-center justify-content-sm-start">
     <app-note class="d-inline-block" *ngFor="let note of notes"
         [note]="note" (onNewText)="updateNote($event)" 
         (onDelete)="deleteNote(note)"
