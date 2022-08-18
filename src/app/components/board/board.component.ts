@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Note } from 'src/app/model/Note';
-import { NoteService } from 'src/app/services/note.service';
+import { Board } from 'src/app/model/Board';
+import { Table } from 'src/app/model/Table';
+import { BoardService } from 'src/app/services/board.service';
+import { TableService } from 'src/app/services/table.service';
 
 @Component({
   selector: 'app-board',
@@ -9,29 +11,71 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class BoardComponent implements OnInit {
 
-  notes:Note[] = [];
-
+  boards:Board[] = [];
+  selectedBoard:Board = { id:0, name:"", tables:[], isActual:true }
+  moreTables:boolean = false;
+  
   constructor(
-    private noteService:NoteService
+    private boardService:BoardService,
+    private tableService:TableService
   ) { }
 
   ngOnInit(): void {
-    this.notes = this.noteService.getNotes();
+    this.createBoardOnStart();
+    this.setBoardsInfo();
+    this.updateTableName();
   }
-
-  addNote(){
-    this.notes.push(this.noteService.addNote());
-  }
-
-  updateNote( newNote:Note ){
-    this.noteService.updateNote(newNote);
-  }
-
-  deleteNote(note:Note){
-    const doDelete = confirm("Are you sure you wish to delete this sticky note?");
-    if (doDelete) {
-      this.notes = this.noteService.deleteNote(note);
+  
+  createBoardOnStart(){
+    if (this.boardService.getBoards().length === 0) {
+      this.selectedBoard = this.boardService.addBoard();
+      this.selectedBoard.isActual = true;
+      this.updateBoard();
+      this.createTableOnStart();
     }
+  }
+
+  createTableOnStart(){
+    this.selectedBoard.tables.push(this.tableService.addTable());
+    this.updateBoard();
+  }
+  
+  setBoardsInfo(){
+    this.boards = this.boardService.getBoards();
+    this.selectedBoard = this.boardService.getSelectedBoard();
+  }
+
+  updateBoard(){
+    this.boardService.updateBoard(this.selectedBoard);
+  }
+
+  newBoard(){
+    //TO DO
+  }
+
+  newTable(){
+    this.selectedBoard.tables.push(this.tableService.addTable());
+    this.updateBoard();
+    this.updateTableName();
+  }
+
+  deleteTable(table:Table){
+    this.selectedBoard.tables = this.tableService.deleteTable(table);
+    this.updateBoard();
+    this.updateTableName();
+  }
+
+  updateTableName(){
+    if (this.selectedBoard.tables.length === 1) {
+      this.moreTables = false;
+    } else {
+      this.moreTables = true;
+    }
+  }
+
+  updateTable(event:Table){
+    this.selectedBoard.tables = this.tableService.updateTable(event);
+    this.updateBoard();
   }
 
 }

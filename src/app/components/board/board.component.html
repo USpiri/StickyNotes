@@ -1,10 +1,27 @@
+<div class="options_buttons position-relative">
+    <div class="position-absolute top-0 end-0">
+        <i class="fa-solid fa-bars options_menu m-4 on_mouse" data-bs-toggle="modal" data-bs-target="#options"></i>
+    </div>
+</div>
 <div class="board_header d-flex justify-content-center align-items-center pt-3">
-    <h1 class="board_title">My Board</h1>
+    <h1 class="board_title m-0">{{selectedBoard.name}}</h1>
+    <i class="fa-solid fa-caret-down board_menu ms-3 on_mouse" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
+    <div class="dropdown">
+        <div class="dropdown-menu p-3">
+            <label class="form-label m-0">Boards</label>
+            <ul class="m-0 p-0 list-group">
+                <li class="list-group-item m-0 p-1" *ngFor="let board of boards"
+                    [ngClass]="{'active': board.isActual}"
+                >
+                    {{board.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<div class="app mx-sm-5 align-items-center align-items-sm-start justify-content-center justify-content-sm-start">
-    <app-note class="d-inline-block" *ngFor="let note of notes"
-        [note]="note" (onNewText)="updateNote($event)" 
-        (onDelete)="deleteNote(note)"
-    ></app-note>
-    <app-add-button class="d-inline-block" (btnClick)="addNote()"></app-add-button>
-</div>
+
+<app-table *ngFor="let table of selectedBoard.tables" (deleteTable)="deleteTable(table)"
+    [table]="table" [moreTables]="moreTables" (newTableName)="updateTable($event)"
+></app-table>
+
+<app-options (newBoard)="newBoard()" (newTable)="newTable()"></app-options>

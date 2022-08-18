@@ -1,0 +1,28 @@
+.app{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    padding: 20px;
+    gap: 20px;
+}
+.text_help{
+    font-size: 15px;
+}
+.table_title{
+    font-weight: 500;
+}
+.board_menu{
+    font-size: 13px;
+    color: #0d1f2d;
+    cursor: pointer;
+    transition: all .2s;
+    border: 1px solid #0d1f2d;
+    border-radius: 20%;
+    padding: 4px;
+    transition: all .3s;
+    cursor: pointer;
+}
+.on_mouse:hover{
+    border: 1px solid white;
+    color: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
+}

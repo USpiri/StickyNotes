@@ -1,0 +1,26 @@
+<div>
+    <div class="table_header d-flex justify-content-center align-items-center" *ngIf="moreTables">
+        <h2 class="table_title m-0">{{actualTable.name}}</h2>
+        <i class="fa-solid fa-pen-to-square board_menu ms-2 on_mouse" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
+        <div class="dropdown">
+            <div class="dropdown-menu p-2">
+                <form>
+                    <div id="tableNameHelp" class="form-text text_help mt-0">Edit table name</div>
+                    <input type="text" class="form-control" id="tableName" placeholder="Table name" name="tableName" 
+                        [(ngModel)]="actualTable.name" (ngModelChange)="onUpdate()"
+                    >
+                    <div class="d-grid mt-1">
+                        <button type="button" class="btn btn-danger p-0" (click)="onDelete()">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="app mx-sm-5 align-items-center align-items-sm-start justify-content-center justify-content-sm-start">
+        <app-note class="d-inline-block" *ngFor="let note of actualTable.notes"
+            [note]="note" (onNewText)="updateNote($event)" 
+            (onDelete)="deleteNote(note)"
+        ></app-note>
+        <app-add-button class="d-inline-block" (btnClick)="addNote()"></app-add-button>
+    </div>
+</div>
