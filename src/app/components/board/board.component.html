@@ -3,9 +3,11 @@
         <i class="fa-solid fa-bars options_menu m-2 m-sm-4 on_mouse" data-bs-toggle="modal" data-bs-target="#options"></i>
     </div>
 </div>
-<div class="board_header d-flex justify-content-center align-items-center pt-4 mb-4">
-    <h1 class="board_title m-0">{{selectedBoard.name}}</h1>
-    <i class="fa-solid fa-caret-down board_menu ms-3 on_mouse" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
+<div class="board_header d-flex flex-row justify-content-center align-items-center pt-4 mb-4">
+    <h1 class="board_title m-0">
+        {{selectedBoard.name}}
+        <i class="fa-solid fa-caret-down board_menu ms-3 mt-1 on_mouse position-absolute" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
+    </h1>
     <div class="dropdown">
         <div class="dropdown-menu p-3">
             <label class="form-label m-0">Boards</label>
@@ -24,4 +26,4 @@
     [table]="table" [moreTables]="moreTables" (newTableName)="updateTable($event)"
 ></app-table>
 
-<app-options (newBoard)="newBoard()" (newTable)="newTable()"></app-options>
+<app-options (newBoard)="newBoard()" (newTable)="newTable()" (updateData)="updateData()"></app-options>

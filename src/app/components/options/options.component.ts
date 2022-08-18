@@ -9,6 +9,7 @@ export class OptionsComponent implements OnInit {
 
   @Output() newBoard:EventEmitter<any> = new EventEmitter();
   @Output() newTable:EventEmitter<any> = new EventEmitter();
+  @Output() updateData:EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -21,6 +22,10 @@ export class OptionsComponent implements OnInit {
 
   onNewTable(){
     this.newTable.emit();
+  }
+
+  onUpdateData(){
+    this.updateData.emit();
   }
 
 }

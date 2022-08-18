@@ -62,6 +62,10 @@ export class BoardService {
     return selected
   }
 
+  deleteData(){
+    localStorage.clear();
+  }
+
   private exist(board:Board, boards:Board[]):boolean{
     const found = boards.find((obj) => {
       return obj.id === board.id

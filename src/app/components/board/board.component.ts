@@ -78,4 +78,11 @@ export class BoardComponent implements OnInit {
     this.updateBoard();
   }
 
+  updateData(){
+    this.boardService.deleteData();
+    this.createBoardOnStart();
+    this.setBoardsInfo();
+    this.updateTableName();
+  }
+
 }
