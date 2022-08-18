@@ -6,20 +6,20 @@
 <div class="board_header d-flex flex-row justify-content-center align-items-center pt-4 mb-4">
     <h1 class="board_title m-0">
         {{selectedBoard.name}}
-        <i class="fa-solid fa-caret-down board_menu ms-3 mt-1 on_mouse position-absolute" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
-    </h1>
-    <div class="dropdown">
-        <div class="dropdown-menu p-3">
-            <label class="form-label m-0">Boards</label>
-            <ul class="m-0 p-0 list-group">
-                <li class="list-group-item m-0 p-1" *ngFor="let board of boards"
-                    [ngClass]="{'active': board.isActual}"
-                >
-                    {{board.name}}
-                </li>
-            </ul>
+        <i class="fa-solid fa-caret-down board_menu ms-3 mt-1 mt-sm-2 on_mouse position-absolute" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
+        <div class="dropdown">
+            <div class="dropdown-menu p-3">
+                <label class="form-label m-0">Boards</label>
+                <ul class="m-0 p-0 list-group">
+                    <li class="list-group-item m-0 p-1" *ngFor="let board of boards"
+                        [ngClass]="{'active': board.isActual}"
+                    >
+                        {{board.name}}
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </h1>
 </div>
 
 <app-table *ngFor="let table of selectedBoard.tables" (deleteTable)="deleteTable(table)"
