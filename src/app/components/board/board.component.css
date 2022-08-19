@@ -28,3 +28,11 @@
     color: rgba(255, 255, 255, 1);
     transform: scale(1.08);
 }
+.board_active{
+    cursor: default;
+    user-select: none;
+}
+.board_deactive{
+    cursor: pointer;
+    user-select: none;
+}

@@ -9,14 +9,25 @@
         <i class="fa-solid fa-caret-down board_menu ms-3 mt-1 mt-sm-2 on_mouse position-absolute" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
         <div class="dropdown">
             <div class="dropdown-menu p-3">
-                <label class="form-label m-0">Boards</label>
+                <label class="form-label m-0 mb-1">Boards</label>
                 <ul class="m-0 p-0 list-group">
                     <li class="list-group-item m-0 p-1" *ngFor="let board of boards"
-                        [ngClass]="{'active': board.isActual}"
+                        [ngClass]="{'active': board.isActual , 'board_active':board.isActual , 'board_deactive': !board.isActual}"
+                        (click)="onChangeBoard(board)"
                     >
                         {{board.name}}
                     </li>
                 </ul>
+                <hr class="dropdown-divider"> 
+                <form>
+                    <label class="form-label m-0 mb-1">Edit board name</label>
+                    <input type="text" class="form-control" id="tableName" placeholder="Table name" name="tableName" 
+                        [(ngModel)]="selectedBoard.name" (ngModelChange)="updateBoard()"
+                    >
+                    <div class="d-grid mt-1">
+                        <button type="button" class="btn btn-danger p-0" (click)="onDeleteBoard()">Delete</button>
+                    </div>
+                </form>
             </div>
         </div>
     </h1>

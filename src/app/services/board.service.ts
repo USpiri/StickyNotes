@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Board } from '../model/Board';
+import { Table } from '../model/Table';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardService {
+
+  private newTable:Table = { id:1, name:"Table 1", notes:[]  }
 
   constructor() { }
 
@@ -20,8 +23,8 @@ export class BoardService {
     const boards = this.getBoards();
     const board:Board = {
       id: Math.floor(Math.random() * 100000),
-      name: "My Board",
-      tables: [],
+      name: "My Board " + (boards.length + 1),
+      tables: [this.newTable],
       isActual: false
     }
     if (this.exist(board,boards)) {

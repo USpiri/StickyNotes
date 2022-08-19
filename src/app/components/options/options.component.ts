@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-options',
@@ -6,6 +6,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./options.component.css']
 })
 export class OptionsComponent implements OnInit {
+
+  @ViewChild('clsButton') clsButton:any;
 
   @Output() newBoard:EventEmitter<any> = new EventEmitter();
   @Output() newTable:EventEmitter<any> = new EventEmitter();
@@ -18,14 +20,19 @@ export class OptionsComponent implements OnInit {
 
   onNewBoard(){
     this.newBoard.emit();
+    this.clsButton.nativeElement.click();
   }
 
   onNewTable(){
     this.newTable.emit();
+    this.clsButton.nativeElement.click();
   }
 
   onUpdateData(){
-    this.updateData.emit();
+    if (confirm("This action will delete all your data and create an empty Board")) {
+      this.updateData.emit();
+    }
+    this.clsButton.nativeElement.click();
   }
 
 }

@@ -3,17 +3,46 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-dark">Menu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #clsButton></button>
             </div>
             <div class="modal-body">
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-light" (click)="onNewBoard()">New Board</button>
                     <button type="button" class="btn btn-light" (click)="onNewTable()">New Table</button>
-                    <button type="button" class="btn btn-light">About</button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#about">About</button>
                     <button type="button" class="btn btn-primary" (click)="onUpdateData()">Update data system</button>
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="about" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">About this project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #clsButton></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <img src="https://github.com/USpiri.png" class="rounded-circle img-thumbnail about_image" alt="Uspiri profile image">
+                </div>
+                <h5 class="modal-title text-dark">Simple Sticky Notes</h5>
+                <h6 class="modal-title text-secondary mb-3">V 2.2.0 | By USpiri</h6>
+                <div class="d-grid gap-2">
+                    <a href="https://github.com/USpiri/StickyNotes" target="_blank" class="d-block">
+                        <button type="button" class="btn btn-success w-100">Github Project</button>
+                    </a>
+                    <a href="https://uriel-spiridione.web.app/" target="_blank" class="d-block">
+                        <button type="button" class="btn btn-success w-100">USpiri Portfolio</button>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#options">Back to Menu</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

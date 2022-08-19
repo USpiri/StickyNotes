@@ -31,13 +31,7 @@ export class BoardComponent implements OnInit {
       this.selectedBoard = this.boardService.addBoard();
       this.selectedBoard.isActual = true;
       this.updateBoard();
-      this.createTableOnStart();
     }
-  }
-
-  createTableOnStart(){
-    this.selectedBoard.tables.push(this.tableService.addTable());
-    this.updateBoard();
   }
   
   setBoardsInfo(){
@@ -46,11 +40,12 @@ export class BoardComponent implements OnInit {
   }
 
   updateBoard(){
-    this.boardService.updateBoard(this.selectedBoard);
+    this.boards = this.boardService.updateBoard(this.selectedBoard);
   }
 
   newBoard(){
-    //TO DO
+    let board = this.boardService.addBoard();
+    this.boards.push( board );
   }
 
   newTable(){
@@ -82,6 +77,28 @@ export class BoardComponent implements OnInit {
     this.boardService.deleteData();
     this.createBoardOnStart();
     this.setBoardsInfo();
+    this.updateTableName();
+  }
+
+  onChangeBoard(board:Board){
+    this.selectedBoard.isActual = false;
+    this.updateBoard();
+    this.selectedBoard = board;
+    this.selectedBoard.isActual = true;
+    this.updateBoard();
+    this.updateTableName();
+    this.setBoardsInfo();
+  }
+
+  onDeleteBoard(){
+    if (this.boards.length === 1) {
+      this.updateData();
+    } else {
+      this.boards = this.boardService.deleteBoard(this.selectedBoard);
+      this.selectedBoard = this.boards[0];
+      this.selectedBoard.isActual = true;
+      this.updateBoard();
+    }
     this.updateTableName();
   }
 

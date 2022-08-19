@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Board } from '../model/Board';
 import { Table } from '../model/Table';
 import { BoardService } from './board.service';
 
@@ -14,9 +15,28 @@ export class TableService {
   addTable():Table{
     const board = this.boardService.getSelectedBoard();
     const newTable:Table = {
-      id: board.tables.length + 1,
+      id: Math.floor(Math.random() * 100000),
       name: "Table " + (board.tables.length + 1),
       notes: []
+    }
+    if (this.exist(newTable,board.tables)) {
+      while (this.exist(newTable,board.tables)) {
+        newTable.id = Math.floor(Math.random() * 100000);
+      }
+    }
+    return newTable;
+  }
+
+  addTableOnBoard(board:Board):Table{
+    const newTable:Table = {
+      id: Math.floor(Math.random() * 100000),
+      name: "Table " + (board.tables.length + 1),
+      notes: []
+    }
+    if (this.exist(newTable,board.tables)) {
+      while (this.exist(newTable,board.tables)) {
+        newTable.id = Math.floor(Math.random() * 100000);
+      }
     }
     return newTable;
   }
@@ -33,6 +53,13 @@ export class TableService {
   deleteTable(table:Table):Table[]{
     const tables = this.boardService.getSelectedBoard().tables.filter((tables) => tables.id != table.id);
     return tables;
+  }
+
+  private exist(table:Table, tables:Table[]):boolean{
+    const found = tables.find((obj) => {
+      return obj.id === table.id
+    })
+    return found !== undefined;
   }
 
 }
