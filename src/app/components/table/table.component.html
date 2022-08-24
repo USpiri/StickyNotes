@@ -18,8 +18,8 @@
             </div>
         </h2>
     </div>
-    <div>
-        <div class="vl d-none d-md-block " *ngIf="moreTables && !isFirstTable"></div>
+    <div class="position-relative">
+        <div class="vl d-none h-100 d-md-block " *ngIf="moreTables && !isFirstTable"></div>
         <div class="app align-items-center mb-0 justify-content-center"
             cdkDropList [cdkDropListData]="table" cdkDropListOrientation="horizontal"
         >

@@ -36,7 +36,7 @@
     <app-table *ngFor="let table of selectedBoard.tables" (deleteTable)="deleteTable(table)"
         [table]="table" [moreTables]="moreTables" (newTableName)="updateTable($event)" 
         (updateTables)="updateTables($event)"
-        class="col-md"
+        class="col-md mb-md-4 mb-2"
     ></app-table>
 </div>
 
