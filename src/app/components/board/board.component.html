@@ -32,9 +32,12 @@
         </div>
     </h1>
 </div>
-
-<app-table *ngFor="let table of selectedBoard.tables" (deleteTable)="deleteTable(table)"
-    [table]="table" [moreTables]="moreTables" (newTableName)="updateTable($event)"
-></app-table>
+<div cdkDropListGroup class="row w-100 justify-content-center g-0">
+    <app-table *ngFor="let table of selectedBoard.tables" (deleteTable)="deleteTable(table)"
+        [table]="table" [moreTables]="moreTables" (newTableName)="updateTable($event)" 
+        (updateTables)="updateTables($event)"
+        class="col-md"
+    ></app-table>
+</div>
 
 <app-options (newBoard)="newBoard()" (newTable)="newTable()" (updateData)="updateData()"></app-options>

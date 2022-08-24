@@ -1,8 +1,17 @@
 .app{
     display: grid;
     grid-template-columns: repeat(auto-fill, 150px);
-    padding: 20px;
+    padding: 10px;
     gap: 20px;
+}
+.vl{
+    position: absolute;
+    border-left: 3px solid white;
+    height: 75vh;
+    border-radius: 50%;
+}
+.button{
+    padding-top: 20px;
 }
 .text_help{
     font-size: 15px;

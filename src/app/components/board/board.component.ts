@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Board } from 'src/app/model/Board';
+import { Note } from 'src/app/model/Note';
 import { Table } from 'src/app/model/Table';
 import { BoardService } from 'src/app/services/board.service';
 import { TableService } from 'src/app/services/table.service';
+import { transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -100,6 +102,21 @@ export class BoardComponent implements OnInit {
       this.updateBoard();
     }
     this.updateTableName();
+  }
+
+  updateTables(event:{ previousTable: Table, currentTable: Table, previousIndex: number, currentIndex: number, note:Note }){
+    transferArrayItem(
+      this.selectedBoard.tables[this.getSelectedTableIndex(event.previousTable)].notes,
+      this.selectedBoard.tables[this.getSelectedTableIndex(event.currentTable)].notes,
+      event.previousIndex,
+      event.currentIndex
+    );
+    this.updateBoard();
+  }
+
+  getSelectedTableIndex(table:Table):number{
+    let index = this.selectedBoard.tables.map( (o) => o.id ).indexOf(table.id)
+    return index;
   }
 
 }

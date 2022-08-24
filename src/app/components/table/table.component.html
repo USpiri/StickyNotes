@@ -18,11 +18,21 @@
             </div>
         </h2>
     </div>
-    <div class="app mx-sm-5 align-items-center align-items-sm-start justify-content-center justify-content-sm-start">
-        <app-note class="d-inline-block" *ngFor="let note of actualTable.notes"
-            [note]="note" (onNewText)="updateNote($event)" 
-            (onDelete)="deleteNote(note)"
-        ></app-note>
-        <app-add-button class="d-inline-block" (btnClick)="addNote()"></app-add-button>
+    <div>
+        <div class="vl d-none d-md-block " *ngIf="moreTables && !isFirstTable"></div>
+        <div class="app align-items-center mb-0 justify-content-center"
+            cdkDropList [cdkDropListData]="table" cdkDropListOrientation="horizontal"
+        >
+            <div *ngFor="let note of actualTable.notes" 
+                cdkDrag (cdkDragDropped)="onDropped($event)"
+                [cdkDragData]="note"
+            >
+                <app-note class="d-inline-block" 
+                    [note]="note" (onNewText)="updateNote($event)" 
+                    (onDelete)="deleteNote(note)"
+                ></app-note>
+            </div>
+            <app-add-button class="d-inline-block" (btnClick)="addNote()"></app-add-button>
+        </div>
     </div>
 </div>
