@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-options',
@@ -12,6 +13,12 @@ export class OptionsComponent implements OnInit {
   @Output() newBoard:EventEmitter<any> = new EventEmitter();
   @Output() newTable:EventEmitter<any> = new EventEmitter();
   @Output() updateData:EventEmitter<any> = new EventEmitter();
+  @Output() importData:EventEmitter<any> = new EventEmitter();
+  @Output() exportBoardData:EventEmitter<any> = new EventEmitter();
+  @Output() exportAllData:EventEmitter<any> = new EventEmitter();
+
+  selectedFile!: File;
+  version:string = environment.version;
 
   constructor() { }
 
@@ -31,6 +38,33 @@ export class OptionsComponent implements OnInit {
   onUpdateData(){
     if (confirm("This action will delete all your data and create an empty Board")) {
       this.updateData.emit();
+    }
+    this.clsButton.nativeElement.click();
+  }
+
+  onExport(){
+    this.exportBoardData.emit();
+    this.clsButton.nativeElement.click();
+  }
+
+  onExportAll(){
+    this.exportAllData.emit();
+    this.clsButton.nativeElement.click();
+  }
+
+  onImport(event:any){
+    if(event.target.files.length > 0) {
+      let data:any;
+      this.selectedFile = event.target.files[0];
+      const fileReader = new FileReader();
+      fileReader.readAsText(this.selectedFile, "UTF-8");
+      fileReader.onload = () => {
+        data = JSON.parse(fileReader.result?.toString()!);
+        this.importData.emit(data);
+      }
+      fileReader.onerror = (error) => {
+        alert("Error reading file")
+      }
     }
     this.clsButton.nativeElement.click();
   }

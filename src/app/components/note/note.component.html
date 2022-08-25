@@ -8,9 +8,6 @@
     </textarea>
     <div class="d-flex flex-column position-absolute top-0 end-0 me-2 mt-2">
         <div class="m-0">
-            <i class="fa-solid fa-square-xmark icon delete" (click)="onDeleteNote()"></i>
-        </div>
-        <div class="m-0">
             <i class="fa-solid fa-square-caret-down icon menu" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
             <div class="dropdown">
                 <div class="dropdown-menu p-3">
@@ -20,6 +17,9 @@
                             [ngStyle]="{'background-color': color.color}" [ngClass]="{'selected': color.selected}"
                         ></li>
                     </ul>
+                    <div class="d-grid mt-3">
+                        <button type="button" class="btn btn-danger p-0" (click)="onDeleteNote()">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>

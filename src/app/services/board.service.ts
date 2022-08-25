@@ -69,6 +69,14 @@ export class BoardService {
     localStorage.clear();
   }
 
+  existId(id:number):boolean{
+    const boards = this.getBoards()
+    const found = boards.find((obj) => {
+      return obj.id === id
+    })
+    return found !== undefined;
+  }
+
   private exist(board:Board, boards:Board[]):boolean{
     const found = boards.find((obj) => {
       return obj.id === board.id

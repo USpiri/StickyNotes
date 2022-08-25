@@ -1,6 +1,6 @@
 <div>
     <div class="table_header d-flex justify-content-center align-items-center" *ngIf="moreTables">
-        <h2 class="table_title m-0">
+        <h2 class="table_title my-0 mx-3 text-center">
             {{actualTable.name}}
             <i class="fa-solid fa-pen-to-square board_menu ms-2 mt-0 mt-sm-1 mt-xl-2 on_mouse position-absolute" data-bs-toggle="dropdown" data-bs-auto-close="outside"></i>
             <div class="dropdown">
@@ -20,19 +20,20 @@
     </div>
     <div class="position-relative">
         <div class="vl d-none h-100 d-md-block " *ngIf="moreTables && !isFirstTable"></div>
-        <div class="app align-items-center mb-0 justify-content-center"
+        <ul class="app align-items-center mb-0 justify-content-center list-unstyled"
             cdkDropList [cdkDropListData]="table" cdkDropListOrientation="horizontal"
+            cdkDropListSortingDisabled
         >
-            <div *ngFor="let note of actualTable.notes" 
+            <li *ngFor="let note of actualTable.notes"
                 cdkDrag (cdkDragDropped)="onDropped($event)"
-                [cdkDragData]="note"
+                [cdkDragData]="note" [cdkDragStartDelay]="500"
             >
                 <app-note class="d-inline-block" 
                     [note]="note" (onNewText)="updateNote($event)" 
                     (onDelete)="deleteNote(note)"
                 ></app-note>
-            </div>
+            </li>
             <app-add-button class="d-inline-block" (btnClick)="addNote()"></app-add-button>
-        </div>
+        </ul>
     </div>
 </div>

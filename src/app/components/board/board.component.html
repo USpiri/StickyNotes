@@ -40,4 +40,6 @@
     ></app-table>
 </div>
 
-<app-options (newBoard)="newBoard()" (newTable)="newTable()" (updateData)="updateData()"></app-options>
+<app-options (newBoard)="newBoard()" (newTable)="newTable()" (updateData)="updateData()" 
+    (importData)="importData($event)" (exportAllData)="exportAllData()" (exportBoardData)="exportBoard()">
+</app-options>

@@ -66,17 +66,18 @@ export class TableComponent implements OnInit {
 
   onDropped(event:CdkDragDrop<Note[]>){
     if (event.previousContainer === event.container) {
-      moveItemInArray(this.actualTable.notes, event.previousIndex, event.currentIndex)
-      this.onUpdate();
     } else {
       this.updateTables.emit({
         previousTable: event.previousContainer.data,
         currentTable: event.container.data,
-        previousIndex: event.previousIndex,
-        currentIndex: event.currentIndex,
         note: event.item.data
       });
     }
+  }
+
+  moveInArray( array:Note[], oldIndex:number, newIndex:number ){
+    array.splice(newIndex, 0, array.splice(oldIndex, 1)[0]);
+    return array; // for testing
   }
 
 }

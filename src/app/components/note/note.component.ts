@@ -9,7 +9,7 @@ import { Note } from 'src/app/model/Note';
 })
 export class NoteComponent implements OnInit {
 
-  @Input() note:Note = { id:0, text:"", color:"#FFFFFC" }
+  @Input() note:Note = { id:0, text:"", color:"#fffffc" }
   @Output() onNewText:EventEmitter<Note> = new EventEmitter();
   @Output() onDelete = new EventEmitter();
 
@@ -19,7 +19,7 @@ export class NoteComponent implements OnInit {
     { id: 2, color: "#ffd6a5", selected: false },
     { id: 3, color: "#fdffb6", selected: false },
     { id: 4, color: "#caffbf", selected: false },
-    { id: 5, color: "#9bf6ff", selected: false },
+    { id: 5, color: "#c0fdff", selected: false },
     { id: 6, color: "#a0c4ff", selected: false },
     { id: 7, color: "#ffc6ff", selected: false }
   ]

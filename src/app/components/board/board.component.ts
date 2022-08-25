@@ -4,7 +4,7 @@ import { Note } from 'src/app/model/Note';
 import { Table } from 'src/app/model/Table';
 import { BoardService } from 'src/app/services/board.service';
 import { TableService } from 'src/app/services/table.service';
-import { transferArrayItem } from '@angular/cdk/drag-drop';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-board',
@@ -104,19 +104,67 @@ export class BoardComponent implements OnInit {
     this.updateTableName();
   }
 
-  updateTables(event:{ previousTable: Table, currentTable: Table, previousIndex: number, currentIndex: number, note:Note }){
-    transferArrayItem(
-      this.selectedBoard.tables[this.getSelectedTableIndex(event.previousTable)].notes,
-      this.selectedBoard.tables[this.getSelectedTableIndex(event.currentTable)].notes,
-      event.previousIndex,
-      event.currentIndex
-    );
+  updateTables(event:{ previousTable: Table, currentTable: Table, note:Note }){
+    this.selectedBoard.tables[this.getSelectedTableIndex(event.previousTable)].notes = this.deleteNoteFromTable(
+      this.selectedBoard.tables[this.getSelectedTableIndex(event.previousTable)]
+      ,event.note
+    )
+    this.selectedBoard.tables[this.getSelectedTableIndex(event.currentTable)].notes.push(event.note);
     this.updateBoard();
+  }
+
+  deleteNoteFromTable(table:Table, note:Note):Note[]{
+    return table.notes.filter(
+      not => not.id !== note.id
+    );
   }
 
   getSelectedTableIndex(table:Table):number{
     let index = this.selectedBoard.tables.map( (o) => o.id ).indexOf(table.id)
     return index;
+  }
+
+  importData(event:{ app:string, version:string , boards:Board[] }){
+    if (event.app === "StickyNotes") {
+      event.boards.forEach(board => {
+        board.id = Math.floor(Math.random() * 100000)
+        if (this.boardService.existId(board.id)) {
+          while (this.boardService.existId(board.id)) {
+            board.id = Math.floor(Math.random() * 100000);
+          }
+        }
+        board.isActual = false;
+        this.boards.push(board);
+      });
+      this.boardService.saveBoards(this.boards);
+    } else {
+      alert("This file does not belong to StickyNotes");
+    }
+  }
+
+  exportAllData(){
+    this.generateJson(this.boardService.getBoards(), "StickyNotes-Boards")
+  }
+
+  exportBoard(){
+    let array = [this.selectedBoard];
+    this.generateJson(array, "StickyNotes-" + this.selectedBoard.name)
+  }
+
+  generateJson( array:any, fileName:string ){
+    let object:{ app:string, version:string , boards:Board[] } = {
+      app:"StickyNotes",
+      version: environment.version,
+      boards: array
+    }
+    var sJson = JSON.stringify(object);
+    var element = document.createElement('a');
+    element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
+    element.setAttribute('download', fileName+".json");
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
   }
 
 }
