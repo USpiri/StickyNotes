@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import packageJson from '../../../../package.json';
 
 @Component({
   selector: 'app-options',
@@ -18,7 +18,7 @@ export class OptionsComponent implements OnInit {
   @Output() exportAllData:EventEmitter<any> = new EventEmitter();
 
   selectedFile!: File;
-  version:string = environment.version;
+  version:string = packageJson.version;
 
   constructor() { }
 

@@ -4,7 +4,7 @@ import { Note } from 'src/app/model/Note';
 import { Table } from 'src/app/model/Table';
 import { BoardService } from 'src/app/services/board.service';
 import { TableService } from 'src/app/services/table.service';
-import { environment } from 'src/environments/environment';
+import packageJson from '../../../../package.json';
 
 @Component({
   selector: 'app-board',
@@ -154,7 +154,7 @@ export class BoardComponent implements OnInit {
   generateJson( array:any, fileName:string ){
     let object:{ app:string, version:string , boards:Board[] } = {
       app:"StickyNotes",
-      version: environment.version,
+      version: packageJson.version,
       boards: array
     }
     var sJson = JSON.stringify(object);

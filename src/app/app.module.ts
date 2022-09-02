@@ -9,6 +9,8 @@ import { NoteComponent } from './components/note/note.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { TableComponent } from './components/table/table.component';
 import { OptionsComponent } from './components/options/options.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,13 @@ import { OptionsComponent } from './components/options/options.component';
   imports: [
     BrowserModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
