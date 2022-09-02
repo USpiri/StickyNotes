@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Board } from 'src/app/model/Board';
 import { Note } from 'src/app/model/Note';
 import { Table } from 'src/app/model/Table';
 import { BoardService } from 'src/app/services/board.service';
 import { TableService } from 'src/app/services/table.service';
 import packageJson from '../../../../package.json';
+import { OptionsComponent } from '../options/options.component';
 
 @Component({
   selector: 'app-board',
@@ -16,6 +17,8 @@ export class BoardComponent implements OnInit {
   boards:Board[] = [];
   selectedBoard:Board = { id:0, name:"", tables:[], isActual:true }
   moreTables:boolean = false;
+
+  @ViewChild(OptionsComponent) child?:OptionsComponent;
   
   constructor(
     private boardService:BoardService,
@@ -26,6 +29,10 @@ export class BoardComponent implements OnInit {
     this.createBoardOnStart();
     this.setBoardsInfo();
     this.updateTableName();
+  }
+
+  openMenu(){
+    this.child?.changeMenu(0);
   }
   
   createBoardOnStart(){

@@ -8,6 +8,15 @@ import packageJson from '../../../../package.json';
 })
 export class OptionsComponent implements OnInit {
 
+  menus:{ id:number, title:string }[] = [
+    { id:0, title:"Menu" },
+    { id:1, title:"About this project" },
+    { id:2, title:"Export options" },
+    { id:3, title:"New Board/Table options" },
+    { id:4, title:"How to download StickyNotes" }
+  ];
+  selectedMenu:{ id:number, title:string } = this.menus[0];
+
   @ViewChild('clsButton') clsButton:any;
 
   @Output() newBoard:EventEmitter<any> = new EventEmitter();
@@ -27,29 +36,33 @@ export class OptionsComponent implements OnInit {
 
   onNewBoard(){
     this.newBoard.emit();
-    this.clsButton.nativeElement.click();
+    this.closeModal();
   }
 
   onNewTable(){
     this.newTable.emit();
-    this.clsButton.nativeElement.click();
+    this.closeModal();
   }
 
   onUpdateData(){
     if (confirm("This action will delete all your data and create an empty Board")) {
       this.updateData.emit();
     }
-    this.clsButton.nativeElement.click();
+    this.closeModal();
+  }
+
+  changeMenu( id:number ){
+    this.selectedMenu = this.menus[id];
   }
 
   onExport(){
     this.exportBoardData.emit();
-    this.clsButton.nativeElement.click();
+    this.closeModal();
   }
 
   onExportAll(){
     this.exportAllData.emit();
-    this.clsButton.nativeElement.click();
+    this.closeModal();
   }
 
   onImport(event:any){
@@ -66,7 +79,12 @@ export class OptionsComponent implements OnInit {
         alert("Error reading file")
       }
     }
+    this.closeModal();
+  }
+
+  closeModal(){
     this.clsButton.nativeElement.click();
+    this.changeMenu(0);
   }
 
 }

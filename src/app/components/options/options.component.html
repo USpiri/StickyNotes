@@ -2,55 +2,75 @@
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-dark">Menu</h5>
+                <h5 class="modal-title text-dark" *ngIf="selectedMenu.id === 0">Menu</h5>
+                <h5 class="modal-title text-dark" *ngIf="selectedMenu.id === 1">About this project</h5>
+                <h5 class="modal-title text-dark" *ngIf="selectedMenu.id === 2">Export options</h5>
+                <h5 class="modal-title text-dark" *ngIf="selectedMenu.id === 3">New Board/Table options</h5>
+                <h5 class="modal-title text-dark" *ngIf="selectedMenu.id === 4">How to download StickyNotes</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #clsButton></button>
             </div>
             <div class="modal-body">
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-light" (click)="onNewBoard()">New Board</button>
-                    <button type="button" class="btn btn-light" (click)="onNewTable()">New Table</button>
-                    <button type="button" class="btn btn-light" (click)="onExport()">Export Board</button>
-                    <button type="button" class="btn btn-light" (click)="onExportAll()">Export Data</button>
-                    <div class="input-group">
-                        <label class="custom-file w-100">
-                            <input type="file" id="import" class="d-none" (change)="onImport($event)" accept="application/json">
-                            <span class="input-group-text btn btn-light w-100" id="inputGroupFile02">Import Data</span>
-                        </label>
+                <div class="menu" *ngIf="selectedMenu.id === 0">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-light" (click)="changeMenu(3)">New Board/Table</button>
+                        <button type="button" class="btn btn-light" (click)="changeMenu(2)">Export Data</button>
+                        <div class="input-group">
+                            <label class="custom-file w-100">
+                                <input type="file" id="import" class="d-none" (change)="onImport($event)" accept="application/json">
+                                <span class="input-group-text btn btn-light w-100" id="inputGroupFile02">Import Data</span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-light" (click)="changeMenu(4)">Download Notes app</button>
+                        <button type="button" class="btn btn-primary" (click)="changeMenu(1)">About</button>
+                        <button type="button" class="btn btn-danger" (click)="onUpdateData()">Update data system</button>
                     </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#about">About</button>
-                    <button type="button" class="btn btn-danger" (click)="onUpdateData()">Update data system</button>
+                </div>
+                <div class="about" *ngIf="selectedMenu.id === 1">
+                    <div class="text-center mb-3">
+                        <img src="https://github.com/USpiri.png" class="rounded-circle img-thumbnail about_image" alt="Uspiri profile image">
+                    </div>
+                    <h5 class="modal-title text-dark">Simple Sticky Notes</h5>
+                    <h6 class="modal-title text-secondary mb-3">{{version}} | By USpiri</h6>
+                    <div class="d-grid gap-2">
+                        <a href="https://github.com/USpiri/StickyNotes" target="_blank" class="d-block">
+                            <button type="button" class="btn btn-success w-100">Github Project</button>
+                        </a>
+                        <a href="https://uriel-spiridione.web.app/" target="_blank" class="d-block">
+                            <button type="button" class="btn btn-success w-100">USpiri Portfolio</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="export" *ngIf="selectedMenu.id === 2">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-success" (click)="onExport()">Export this Board</button>
+                        <button type="button" class="btn btn-success" (click)="onExportAll()">Export all Data</button>
+                    </div>
+                </div>
+                <div class="new" *ngIf="selectedMenu.id === 3">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-success" (click)="onNewBoard()">New Board</button>
+                        <button type="button" class="btn btn-success" (click)="onNewTable()">New Table</button>
+                    </div>
+                </div>
+                <div class="howto" *ngIf="selectedMenu.id === 4">
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                        <h4 class="text-dark mb-1">Step 1</h4>
+                        <p class="text-dark mb-0">Open browser menu</p>
+                        <img src="../../../assets/Step1.jpg" alt="open browser menu" class="image mb-3 rounded">
+                        <h4 class="text-dark mb-1">Step 2</h4>
+                        <p class="text-dark mb-0">Install Notes app</p>
+                        <img src="../../../assets/Step2.jpg" alt="install app" class="image mb-1 rounded">
+                        <img src="../../../assets/Step3.jpg" alt="click on install" class="image mb-3 rounded">
+                        <h4 class="text-dark mb-1">Step 3</h4>
+                        <p class="text-dark mb-0">Open Notes app</p>
+                        <img src="../../../assets/Step4.jpg" alt="open notes app" class="image rounded">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="about" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-dark">About this project</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #clsButton></button>
-            </div>
-            <div class="modal-body">
-                <div class="text-center mb-3">
-                    <img src="https://github.com/USpiri.png" class="rounded-circle img-thumbnail about_image" alt="Uspiri profile image">
-                </div>
-                <h5 class="modal-title text-dark">Simple Sticky Notes</h5>
-                <h6 class="modal-title text-secondary mb-3">{{version}} | By USpiri</h6>
-                <div class="d-grid gap-2">
-                    <a href="https://github.com/USpiri/StickyNotes" target="_blank" class="d-block">
-                        <button type="button" class="btn btn-success w-100">Github Project</button>
-                    </a>
-                    <a href="https://uriel-spiridione.web.app/" target="_blank" class="d-block">
-                        <button type="button" class="btn btn-success w-100">USpiri Portfolio</button>
-                    </a>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#options">Back to Menu</button>
+                <button type="button" class="btn btn-primary" (click)="changeMenu(0)"
+                    *ngIf="selectedMenu.id !== 0"
+                >Back to Menu</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
