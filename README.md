@@ -1,27 +1,36 @@
-# StickyNotes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
+# Sticky Notes
 
-## Development server
+Una aplicación web progresiva (PWA) para apuntar notas, hecha con Angular y bootstrap. Con diseño responsivo para adaptarse a los diferentes dispositivos.  
+Funciona con un sistema de almacenamiento local y es capaz de ser descargada para funcionar totalmente offline.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![App Screenshot](readme-resources/Design.jpg)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Features
 
-## Running unit tests
+- Funcionamiento 100% offline.
+- Apuntar notas.
+- Cambiar color a las notas.
+- Organizar las notas en Tableros y Pizzarras.
+- Nombres de Tablas y Pizzarras personalizables.
+- Multiplataforma.
+- Almacenamiento local.
+- Capacidad de importar y exportar datos.
+- Arrastrar y soltar notas en diferentes tablas.
+- Actualizaciones automáticas.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Demo
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Puedes probar y descargar la app aquí: 
+[StickyNotes Web App](https://simple-sticky-notes.web.app/)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=Opsgenie&logoColor=white)](https://uriel-spiridione.web.app/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/UrielSpiridione)
+
