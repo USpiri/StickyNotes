@@ -45,9 +45,7 @@ export class OptionsComponent implements OnInit {
   }
 
   onUpdateData(){
-    if (confirm("This action will delete all your data and create an empty Board")) {
-      this.updateData.emit();
-    }
+    this.updateData.emit();
     this.closeModal();
   }
 
