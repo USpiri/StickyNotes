@@ -48,10 +48,7 @@ export class TableComponent implements OnInit {
   }
 
   deleteNote(note:Note){
-    const doDelete = confirm("Are you sure you wish to delete this sticky note?");
-    if (doDelete) {
-      this.actualTable.notes = this.noteService.deleteNote(note,this.table);
-    }
+    this.actualTable.notes = this.noteService.deleteNote(note,this.table);
     this.onUpdate();
   }
 
